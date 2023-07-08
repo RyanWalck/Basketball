@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% comment %} for head title tags and helping us with SEO {% endcomment %}
+{% block title %}Player{% endblock  %}
+
+{% block content %}
+
+<h1 class="title pt-5">Great Players</h1>
+<div class="gallery">
+
+  {% for player in players %}
+  <a href="">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{player.img}}" alt="{{player.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{player.name}}</p>
+      </div>
+    </div>
+  </a>
+	{% empty %}
+  <article class="message">
+    <div class="message-header">
+      <p>No Players Available</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% for player in players %}
+<!-- Here we are changing the href of the a tag to use the url DTL -->
+  <a href="{% url 'player_detail' player.pk %}">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{player.img}}" alt="{{player.name}}" />
+        </figure>
+      </div>
+      <div class="card-header">
+        <p class="card-header-title">{{player.name}}</p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
